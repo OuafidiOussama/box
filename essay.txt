@@ -1,1 +1,61 @@
-Bounjour !!
+Exemple 1 : variable declaration
+#include <stdio.h>
+
+int main() {
+    int X = 4; \\ variable declaration 
+    printf("%d", X); \\ variable call 
+    return 0;
+}
+EXEMPLE 2 : user index 
+#include <stdio.h>
+
+int main() {
+
+    int X ;
+    int Y ;
+    int Result ;
+    printf("put your X value");
+    scanf("%d", &X);
+    printf("put your Y value");
+    scanf("%d", &Y);
+    Result = X-Y ;
+    printf("end result is %d", Result);
+
+    return 0;
+}
+EXEMPLE 3 : calculator
+#include <stdio.h>
+
+int main() {
+
+    float X, Y, Result, Op ;
+    printf("input X value : ");
+    scanf("%f", &X);
+    printf("input Y value : ");
+    scanf("%f", &Y);
+    printf("1) addition    2) subtraction \n3) multiplication    4) division \n");
+    printf("please choose Operation : ");
+    scanf("%f", &Op);
+
+    if( Op == 1 ) {
+        Result = X + Y;
+    }
+    else if( Op == 2 ) {
+        Result = X - Y;
+    }
+    else if( Op == 3 ) {
+        Result = X * Y;
+    }
+    else if( Op == 4 ) {
+        Result = X / Y;
+    }
+    else {
+        printf("Error!!,Please select a number from 1 to 4");
+    }
+    printf("%f", Result);
+
+return 0;
+}
+
+
+
