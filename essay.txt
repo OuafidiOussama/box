@@ -154,5 +154,22 @@ int main() {
 return 0;
 }
 
+EXEMPLE : 7 COMPTEUR 
+#include <stdio.h>
+
+int main() {
+    int compteur;
+    int i;
+    printf("c'est quoi la valeur de votre compteur? : ");
+    scanf("%i", &compteur);
+
+    for( i = 0 ; i <= compteur ; i++ ) {
+        printf("%d\n", i);
+        sleep(1);
+    }
+    printf("Comptage fini");
+
+return 0;
+};
 
 
