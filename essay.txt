@@ -56,6 +56,40 @@ int main() {
 
 return 0;
 }
+Exemple 4 : solution d'eq 2eme degrée 
+
+#include <stdio.h>
+#include <math.h>
+// solution d'une equation 2eme degrée
+
+
+
+int main() {
+    int a, b ,c ;
+    float  X1, X2, DEL ;
+
+    printf("input a value : ");
+    scanf("%i", &a);
+    printf("input b value : ");
+    scanf("%i", &b);
+    printf("input c value : ");
+    scanf("%i", &c);
+    DEL = pow(b,2) - 4*a*c;
+    printf("DELTA = %f\n", DEL);
+    if( DEL > 0 ) {
+        X1 = (-b+sqrt(DEL))/(2*a);
+        X2 = (-b-sqrt(DEL))/(2*a);
+    }
+    else if( DEL == 0 ) {
+        X1 = X2 = -b/(2*a);
+    }
+    else {
+        printf("Solution Impossible!!");
+    }
+    printf("La valeur de X1 est : %f\n", X1);
+    printf("La valeur de X2 est : %f\n", X2);
+return 0;
+}
 
 
 
