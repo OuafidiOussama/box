@@ -137,7 +137,22 @@ int main() {
     }
 return 0;
 }
+EXEMPLE 6: DECOMPTEUR
+#include <stdio.h>
 
+int main() {
+    int decompteur;
+    printf("Quelle sera la valeur de votre compteur? : ");
+    scanf("%i", &decompteur);
+
+    while( decompteur != -1 ) {
+        printf("______________________%i______________________\n", decompteur);
+        decompteur--;
+        sleep(1);
+    }
+    printf("---------------decomptage fini--------------- ");
+return 0;
+}
 
 
 
