@@ -62,8 +62,6 @@ Exemple 4 : solution d'eq 2eme degrée
 #include <math.h>
 // solution d'une equation 2eme degrée
 
-
-
 int main() {
     int a, b ,c ;
     float  X1, X2, DEL ;
@@ -90,6 +88,56 @@ int main() {
     printf("La valeur de X2 est : %f\n", X2);
 return 0;
 }
+
+Exemple 5: Month Detector
+#include <stdio.h>
+
+int main() {
+    int month;
+    printf("please insert the month number : ");
+    scanf("%i", &month);
+
+    switch(month){
+        case 1:
+            printf("Your month is : January");
+            break;
+        case 2:
+            printf("Your month is : February");
+            break;
+        case 3:
+            printf("Your month is : March");
+            break;
+        case 4:
+            printf("Your month is : April");
+            break;
+        case 5:
+            printf("Your month is : May");
+            break;
+        case 6:
+            printf("Your month is : June");
+            break;
+        case 7:
+            printf("Your month is : July");
+            break;
+        case 8:
+            printf("Your month is : August");
+            break;
+        case 9:
+            printf("Your month is : September");
+            break;
+        case 10:
+            printf("Your month is : October");
+            break;
+        case 11:
+            printf("Your month is : November");
+            break;
+        case 12:
+            printf("Your month is : December");
+            break;
+    }
+return 0;
+}
+
 
 
 
