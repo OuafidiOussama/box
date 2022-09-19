@@ -1,0 +1,102 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Product {
+    long int code;
+    char name [20];
+    int quantity;
+    float price;
+};
+
+int main() {
+
+    //variables
+    int op ;
+while(1){
+
+    //interface graphique;
+    printf("\t\t\t\t\t\t========Pharmacy========\t\t\t\t\t\t\n");
+    printf("\t\t\t\t\t     which operation do you desire?\t\t\t\t\t\n");
+    printf("\n\t\t\t1)Add a product.        2)Add multiple products.        3)Show product list.\n");
+    printf("\n\t\t\t4)Buy a product.        5)Search for a product.         6)Display stock status.\n");
+    printf("\n\t\t\t7)Add to stock.         8)Delete a product.             9)Selling statistics.\n");
+    printf("\n\t\t\t\t\t=======================================\n");
+    printf("\t\t\t\t\ttype the number of the operation : ");
+    scanf("%d", &op);
+
+    //Add a product
+
+    if ( op == 1) {
+        struct Product p1;
+        printf("> Product code : ");
+        scanf("%ld", &p1.code);
+        printf("> Product name : ");
+        scanf("%s", &p1.name);
+        printf("> Product quantity : ");
+        scanf("%d", &p1.quantity);
+        printf("> Product price : ");
+        scanf("%f", &p1.price);
+        printf("\n\t\t\t\tCode \t\tName \t\tQuantity \tPrice\n");
+        printf("\n\t\t\t\t%ld \t\t%s \t\t%d \t\t%f\n", p1.code, p1.name, p1.quantity, p1.price);
+
+
+    }
+    //Add multiple products
+    else if ( op == 2) {
+        int P_Num, i;
+
+        printf("how many products do you wanna add ? : ");
+        scanf("%d", &P_Num);
+        struct Product p[P_Num];
+
+        for( i = 0; i < P_Num; i++){
+            printf("> Product %d code : ",i+1);
+            scanf("%ld", &p[i].code);
+            printf("> Product %d name : ",i+1);
+            scanf("%s", &p[i].name);
+            printf("> Product %d quantity : ",i+1);
+            scanf("%d", &p[i].quantity);
+            printf("> Product %d price : ",i+1);
+            scanf("%f", &p[i].price);
+        }
+        printf("\n\t\t\t\tCode \t\tName \t\tQuantity \tPrice\n");
+
+        for( i = 0; i< P_Num; i++){
+            printf("\n\t\t\t\t%ld \t\t%s \t\t%d \t\t%.2f\n", p[i].code, p[i].name, p[i].quantity, p[i].price);
+        }
+    }
+    //Show product list
+    else if ( op == 3) {
+
+    }
+    //Buy a product
+    else if ( op == 4) {
+        printf("4");
+    }
+    //Search for a product
+    else if ( op == 5) {
+        printf("5");
+    }
+    //Stock
+    else if ( op == 6) {
+        printf("6");
+    }
+    //Add to stock
+    else if ( op == 7) {
+        printf("7");
+    }
+    //Delete a product
+    else if ( op == 8) {
+        printf("8");
+    }
+    //selling statistics
+    else if ( op == 9) {
+        printf("9");
+    }
+    //no option from the above
+    else {
+        printf("10");
+    }
+    }
+return 0;
+}
