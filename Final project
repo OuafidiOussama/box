@@ -4,18 +4,25 @@
 
 
 typedef struct Product {
-    long int code;
+    long int code ;
     char name [20];
     int quantity;
     float price;
+    float price_TTC;
 }prd;
+prd p[5000];
+
+int op ;
+    int counter = 0;
+    int i,j;
+
+void addproduct();
+void addproducts();
+
 
 int main() {
 
     //variables
-    int op ;
-    int counter = 0;
-    prd p[30];
 
     while(1){
 
@@ -28,69 +35,69 @@ int main() {
         printf("\n\t\t\t\t\t=======================================\n");
         printf("\t\t\t\t\ttype the number of the operation : ");
         scanf("%d", &op);
-
+        // Prix TTC
+        for (i = 0; i< counter ; i++){
+            p[i].price_TTC =  p[i].price * 1.15;
+        }
         //Add a product
         if ( op == 1) {
-            printf("> Product code : ");
-            scanf("%ld", &p[counter].code);
-            printf("> Product name : ");
-            scanf("%s", &p[counter].name);
-            printf("> Product quantity : ");
-            scanf("%d", &p[counter].quantity);
-            printf("> Product price : ");
-            scanf("%f", &p[counter].price);
-            printf("\n\t\t\t\tCode \t\tName \t\tQuantity \tPrice\n");
-            printf("\n\t\t\t\t%ld \t\t%s \t\t%d \t\t%f\n", p[counter].code, p[counter].name, p[counter].quantity, p[counter].price);
-            counter++;
+            addproduct();
+
         }
         //Add multiple products
         else if ( op == 2) {
-            int P_Num, i;
-            printf("how many products do you wanna add ? : ");
-            scanf("%d", &P_Num);
-            for( i = counter; i < P_Num + counter; i++){
-                printf("> Product %d code : ",i+1);
-                scanf("%ld", &p[i].code);
-                printf("> Product %d name : ",i+1);
-                scanf("%s", &p[i].name);
-                printf("> Product %d quantity : ",i+1);
-                scanf("%d", &p[i].quantity);
-                printf("> Product %d price : ",i+1);
-                scanf("%f", &p[i].price);
-
-            }
-            counter += P_Num;
+            addproducts();
         }
+
 
         //Show product list
         else if ( op == 3) {
-            int Mode,i,k;
-            char temp;
+            int Mode;
+            prd temp;
             printf("how do you wanna sort your list ?\n");
             printf("1) By name              2) By price ");
-            scanf("%d",Mode);
+            scanf("%d",&Mode);
             switch(Mode) {
             case 1 :
-                for ( i = 0; i < counter; i++){
-                    for (k = i + 1; k < counter-1; k++){
-                        if (strcmp(p[k].name, p[k+1].name) == 1){
-                            temp = p[k].name;
-                            p[k].name = p[k+1].name;
-                            p[k+1].name= temp ;
-                        }
+
+                for ( i = 0; i < counter ; i++){
+                     for(j= i + 1; j <counter ;j++){
+                            if (strcmp(p[i].name, p[j].name) ==1){
+                                temp = p[i];
+                                p[i] = p[j];
+                                p[j] = temp;
+                            }
                     }
                 }
+
                 for(i=0;i<counter;i++){
-                  printf("%s\t",p[i].name);
+                    printf("\n\t\t\t\t Code     : %ld",p[i].code);
+                    printf("\n\t\t\t\t Product  : %s",p[i].name);
+                    printf("\n\t\t\t\t Quantity : %d",p[i].quantity);
+                    printf("\n\t\t\t\t Price    : %.2f",p[i].price_TTC);
+                    printf("\n\t\t\t\t----------------------------------------------------\n");
+
+                }
+                break;
+            case 2 :
+                for ( i = 0 ;i<counter ;i++){
+                    for(j= i + 1; j <counter ;j++){
+                    if(p[i].price < p[j].price){
+                        temp = p[i];
+                        p[i] = p[j];
+                        p[j] = temp;
+                    }
+                    }
+                }
+                for(i =0; i<counter;i++){
+                    printf("\n\t\t\t\t Code     : %ld",p[i].code);
+                    printf("\n\t\t\t\t Product  : %s",p[i].name);
+                    printf("\n\t\t\t\t Quantity : %d",p[i].quantity);
+                    printf("\n\t\t\t\t Price    : %.2f",p[i].price_TTC);
+                    printf("\n\t\t\t\t----------------------------------------------------\n");
+                }
                 }
             }
-
-
-            printf("\n\t\t\t\tCode \t\tName \t\tQuantity \tPrice\n");
-            for( int j = 0; j< counter; j++){
-            printf("\n\t\t\t\t%ld \t\t%s \t\t%d \t\t%.2f\n", p[j].code, p[j].name, p[j].quantity, p[j].price);
-            }
-        }
         //Buy a product
         else if ( op == 4) {
 
@@ -98,8 +105,45 @@ int main() {
         }
         //Search for a product
         else if ( op == 5) {
-            printf("5");
-        }
+            int mode;
+            long int searchc;
+            int searchq;
+            int c = 0;
+            printf("WHICH OF THE FOLLOWING METHODS YOU WANT TO SEARCH BY ?\n");
+            printf("1) CODE              2) QUANTITY   ");
+            scanf("%d",&mode);
+            switch(mode){
+            case 1:
+            printf("\nPlease enter the code of the product you are looking for : ");
+            scanf("%ld", &searchc);
+            for (i = 0 ; i < counter; i++){
+                if(searchc == p[i].code) {
+                    printf("\n\t\t\t\t Code     : %ld",p[i].code);
+                    printf("\n\t\t\t\t Product  : %s",p[i].name);
+                    printf("\n\t\t\t\t Quantity : %d",p[i].quantity);
+                    printf("\n\t\t\t\t Price    : %.2f",p[i].price_TTC);
+                    printf("\n\t\t\t\t----------------------------------------------------\n");
+                    c++;
+                    break;
+                }
+            }
+            if (c == 0)
+                printf("None existing product!\n");
+                break;
+                case 2 :
+                    printf("\nPlease enter the quantity of the products you are looking for : ");
+                    scanf("%d", &searchq);
+                    for( i = 0; i < counter; i++){
+                        if( searchq == p[i].quantity ){
+                        printf("\n> Product code : %ld",p[i].code);
+                        printf("\n> Product name : %s",p[i].name);
+                        printf("\n> Product quantity : %d",p[i].quantity);
+                        printf("\n> Product price : %.2f ",p[i].price_TTC);
+                        printf("\n\t\t\t\t\t_________________________________\n");
+                        }
+                    }
+
+        }}
         //Stock
         else if ( op == 6) {
             printf("6");
@@ -122,4 +166,40 @@ int main() {
         }
         }
 return 0;
+}
+
+
+void addproduct(){
+    printf("\t\t\t\t\t> Please fill in product infos < \n");
+    printf("\n\t\t\t\t\t> Product code : ");
+    scanf("%ld", &p[counter].code);
+    printf("\n\t\t\t\t\t> Product name : ");
+    scanf("%s", &p[counter].name);
+    printf("\n\t\t\t\t\t> Product quantity : ");
+    scanf("%d", &p[counter].quantity);
+    printf("\n\t\t\t\t\t> Product price : ");
+    scanf("%f", &p[counter].price);
+    printf("\n\t\t\t\t\t======Product added successfully!======\n");
+    counter++;
+}
+
+void addproducts(){
+    int P_Num;
+            printf("how many products do you wanna add ? : ");
+            scanf("%d", &P_Num);
+            system("cls");
+            for( i = counter; i < P_Num + counter; i++){
+                printf("\t\t\t\t\t> Please fill in product[%d] infos < \n", i+1-counter);
+                printf("\n\t\t\t> Product %d code : ",i+1-counter);
+                scanf("%ld", &p[i].code);
+                printf("\t\t\t> Product %d name : ",i+1-counter);
+                scanf("%s", &p[i].name);
+                printf("\t\t\t> Product %d quantity : ",i+1-counter);
+                scanf("%d", &p[i].quantity);
+                printf("\t\t\t> Product %d price : ",i+1-counter);
+                scanf("%f", &p[i].price);
+                printf("\n\t\t\t\t\t_________________________________\n");
+            }
+            printf("\n====Products added successfully!====\n");
+            counter += P_Num;
 }
